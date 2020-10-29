@@ -26,8 +26,6 @@ jobs:
       with:
         path: ./node_modules
         key: ${{ runner.os }}-yarn-base-${{ hashFiles('yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-base-
     - name: Install base node modules
       if: steps.yarn-base-cache.outputs.cache-hit != 'true'
       run: |
@@ -39,8 +37,6 @@ jobs:
       with:
         path: ./example/node_modules
         key: ${{ runner.os }}-yarn-example-${{ hashFiles('./example/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-example-
     - name: Install example modules
       if: steps.yarn-example-cache.outputs.cache-hit != 'true'
       run: |
